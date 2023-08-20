@@ -74,8 +74,6 @@ for (const article of articles) {
     }
   });
 
-  await fs.writeFile("article.html", $.html());
-
   const turndown = new TurndownService();
 
   // fix images again
