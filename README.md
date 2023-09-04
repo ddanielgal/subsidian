@@ -1,6 +1,8 @@
 # Subsidian
 
-Substack Archive to Obsidian Downloader
+Visualize a Substack Archive in Obsidian Graph View.
+
+Substack Archive to Obsidian Downloader.
 
 Downloads all the posts from a Substack blog and saves them as markdown files in a folder. Switches all internal links to Obsidian links.
 
