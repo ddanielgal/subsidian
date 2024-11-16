@@ -20,7 +20,7 @@ Requires Node 18.
 cp .env.template .env
 ```
 
-(optional) Insert your `connect.sid` cookie value from your browser, as a value of the `CONNECT_SID` environment variable. This is needed for the script to access paywalled posts.
+(optional) Insert your `connect.sid` cookie value from your browser, as a value of the `CONNECT_SID` environment variable. This is needed for the script to access paywalled posts. Note: Each substack has its own connect.sid cookie value.
 
 ```
 npm run build

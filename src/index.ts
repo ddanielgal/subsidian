@@ -13,7 +13,7 @@ const Archive = z.array(
     canonical_url: z.string().url(),
     slug: z.string(),
     post_date: z.string().datetime(),
-    subtitle: z.string(),
+    subtitle: z.string().nullable(),
     publication_id: z.number(),
   })
 );
@@ -36,6 +36,7 @@ do {
   const response = await fetch(api, {
     headers: { cookie: `connect.sid=${process.env.CONNECT_SID}` },
   });
+  console.log(`📡 ${response.status} ${response.statusText}`);
   fetchedArticles = await response.json();
   articles.push(...Archive.parse(fetchedArticles));
   offset += limit;
@@ -101,7 +102,13 @@ for (const article of articles) {
   const obsidianText = mdText.replace(
     /\[([^\]]+)\]\(([^\)]+)\)/g,
     (_, linkText, link) => {
-      const url = new URL(link);
+      let url: URL;
+      try {
+        url = new URL(link);
+      } catch (error) {
+        console.error(`Error parsing URL: ${error}`);
+        return `[${linkText}](${link})`;
+      }
       const linkedArticle = articles.find(
         (article) => url.pathname === `/p/${article.slug}`
       );
